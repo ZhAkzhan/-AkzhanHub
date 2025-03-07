@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>AkzhanHub - КОНТАКТЫ</title>
+  <link rel="icon" type="image/png" href="Group 1 (4).png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-lang="ru">
+  <div class="wrapper">
+    <header>
+      <div class="logo">
+        <a href="index.html">
+          <span class="white">АКЖАН</span><span class="blue">ХАБ</span>
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html" data-key="menu">МЕНЮ</a></li>
+          <li><a href="about.html" data-key="aboutNav">ПРО МЕНЯ</a></li>
+          <li><a href="portfolio.html" data-key="portfolioNav">ПОРТФОЛИО</a></li>
+          <li><a href="contacts.html" class="active" data-key="contactsNav">КОНТАКТЫ</a></li>
+        </ul>
+      </nav>
+      <div class="lang-toggle">
+        <button id="toggle-lang">ҚAZ/РУС</button>
+      </div>
+    </header>
+    <main>
+      <section class="content">
+        <h1 data-key="contactsTitle">Контакты</h1>
+        <div class="contact-container">
+          <!-- WhatsApp -->
+          <div class="contact-card">
+            <h3>WhatsApp</h3>
+            <button class="contact-button" data-url="https://wa.me/87715284444" data-password="1289">Показать</button>
+          </div>
+          <!-- Telegram -->
+          <div class="contact-card">
+            <h3>Telegram</h3>
+            <button class="contact-button" data-url="https://t.me/ink0gn1to_o" data-password="5584">Показать</button>
+          </div>
+          <!-- E-mail -->
+          <div class="contact-card">
+            <h3>E-mail</h3>
+            <button class="contact-button" data-url="mailto:vovovgariaalula@gmail.com" data-password="0000">Показать</button>
+          </div>
+          <!-- TikTok -->
+          <div class="contact-card">
+            <h3>TikTok</h3>
+            <button class="contact-button" data-url="https://www.tiktok.com/@ink0gn1to_o" data-password="9999">Показать</button>
+          </div>
+          <!-- Instagram (без пароля) -->
+          <div class="contact-card">
+            <h3>Instagram</h3>
+            <button class="contact-button" data-url="https://www.instagram.com/ink0gn1to_o">Перейти</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p data-key="footer1">&copy; 2025 AkzhanHub. Все права защищены.</p>
+      <p data-key="footer2">Сайт создан для демонстрации неоновых стилей и интерактивности.</p>
+      <p data-key="footer3">Адаптивный дизайн для любых устройств.</p>
+      <p data-key="footer4">Экспериментальный проект, постоянно обновляемый. Спасибо за визит!</p>
+    </footer>
+  </div>
+  
+  <!-- Модальное окно для ввода пароля -->
+  <div id="passwordModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Введите пароль для доступа:</p>
+      <input type="password" id="modalInput" placeholder="Пароль">
+      <button id="modalSubmit">Отправить</button>
+    </div>
+  </div>
+  
+  <script>
+    // Обработка кнопок контактов через модальное окно
+    document.querySelectorAll('.contact-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const url = this.getAttribute('data-url');
+        const password = this.getAttribute('data-password');
+        if (!password) {
+          window.location.href = url;
+          return;
+        }
+        openModal(url, password);
+      });
+    });
+    
+    function openModal(url, expectedPassword) {
+      const modal = document.getElementById('passwordModal');
+      const modalInput = document.getElementById('modalInput');
+      const modalSubmit = document.getElementById('modalSubmit');
+      modal.style.display = 'block';
+      modalInput.value = '';
+      modalSubmit.onclick = function() {
+        if (modalInput.value === expectedPassword) {
+          modal.style.display = 'none';
+          window.location.href = url;
+        } else {
+          alert('Неверный пароль!');
+        }
+      };
+    }
+    
+    document.querySelector('.close').addEventListener('click', function() {
+      document.getElementById('passwordModal').style.display = 'none';
+    });
+    
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('passwordModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
